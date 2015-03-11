@@ -16,6 +16,16 @@
      body: Faker::Lorem.paragraph
    )
  end
+
+ # Create Unique Post
+Post.find_or_create_by(
+  title:"unique title",
+  body:"unique body"
+  )
+# Create Unique Comment
+Comment.find_or_create_by(
+  body: "this is the unique comment"
+  )
  
  puts "Seed finished"
  puts "#{Post.count} posts created"
