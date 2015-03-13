@@ -56,3 +56,5 @@ group :development, :test do
 end
 
 gem 'pry-rails', :group => :development
+
+gem 'devise'
