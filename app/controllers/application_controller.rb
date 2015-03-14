@@ -6,7 +6,14 @@ class ApplicationController < ActionController::Base
  
      protected
    
-     def configure_permitted_parameters
-       devise_parameter_sanitizer.for(:sign_up) << :name
-     end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :name
+  end
+
+  before_action :flash_attack
+  
+  def flash_attack
+    flash[:error] = "You must be logged in to access"
+  end
+
 end

@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  skip_before_action :flash_attack, only: [:index, :new] #skips index and new
+  
   def index
     @posts = Post.all
   end
@@ -11,7 +13,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-    def create
+  def create
      @post = Post.new(params.require(:post).permit(:title, :body))
      if @post.save
        flash[:notice] = "Post was saved."
@@ -20,13 +22,13 @@ class PostsController < ApplicationController
        flash[:error] = "There was an error saving the post. Please try again."
        render :new
      end
-   end
+  end
 
   def edit
     @post = Post.find(params[:id])
   end
 
-    def update
+  def update
      @post = Post.find(params[:id])
      if @post.update_attributes(params.require(:post).permit(:title, :body))
        flash[:notice] = "Post was updated."
@@ -35,5 +37,5 @@ class PostsController < ApplicationController
        flash[:error] = "There was an error saving the post. Please try again."
        render :edit
      end
-    end
+  end
 end
