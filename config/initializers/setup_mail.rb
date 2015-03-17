@@ -4,8 +4,8 @@ if Rails.env.development? #if Rails.env.development? will stop Rails from readin
     address:        'smtp.gmail.com',
     port:           '587',
     authentication: :plain,
-    password:       'juliabloctest@gmail.com',
-    user_name:      'julia94403', 
+    user_name:       'juliabloctest@gmail.com',
+    password:      'julia94403', 
     domain:         'gmail.com',
     enable_starttls_auto: true
   }
