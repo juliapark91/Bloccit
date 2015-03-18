@@ -1,12 +1,14 @@
-if Rails.env.development? #if Rails.env.development? will stop Rails from reading these mail settings in Production, and block Production email confirmation. We'll fix this together.
-  ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
-    address:        'smtp.sendgrid.net',
-    port:           '587',
-    authentication: :plain,
-    password:       ENV['SENDGRID_PASSWORD'],
-    user_name:      ENV['SENDGRID_USERNAME'], #we use environment variables to not reveal sensitive information
-    domain:         'heroku.com',
-    enable_starttls_auto: true
-  }
-end
+ActionMailer::Base.delivery_method = :smtp
+
+
+ActionMailer::Base.smtp_settings = {
+    :tls                  => false,
+    :address              => 'smtp.sendgrid.net' || ENV['GMAIL_SMTP_ADDRESS'],
+    :port                 => 587,
+    :domain               => 'heroku.com' || ENV['GMAIL_SMTP_DOMAIN'],
+    :user_name            => ENV['SENDGRID_USERNAME'] || ENV['GMAIL_SMTP_USER_NAME'],
+    :password             => ENV['SENDGRID_PASSWORD'] || ENV['GMAIL_SMTP_PASSWORD'],
+    :authentication       => 'plain',
+    :enable_starttls_auto => true
+}
+
