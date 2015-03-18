@@ -11,7 +11,7 @@ class PostPolicy < ApplicationPolicy
       if user.admin? || user.moderator?
         scope.all
       elsif user.present?
-        scope.where(:id => user.id)
+        scope.where(:user_id => user.id)
       else
         scope.none
       end
