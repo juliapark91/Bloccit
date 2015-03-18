@@ -19,6 +19,6 @@ class PostPolicy < ApplicationPolicy
   end
 
   def index?
-    true
+    user.present?
   end
 end
