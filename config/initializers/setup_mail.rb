@@ -1,6 +1,6 @@
 ActionMailer::Base.delivery_method = :smtp
 
-if Rails.env.production?
+if Rails.env.production? || Rails.env.development?
   ActionMailer::Base.smtp_settings = {
     :tls                  => false,
     :address              => 'smtp.sendgrid.net',
