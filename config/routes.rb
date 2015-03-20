@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :topics do
     resources :posts, except: [:index]
+      resources :summaries, only: [:new, :create, :show]
   end
 
   get 'about' => 'welcome#about'
