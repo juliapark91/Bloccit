@@ -39,11 +39,6 @@ topics = Topic.all
   )
 end
 posts = Post.all
-
-# Create Summaries
-posts.each do |post|
-  post.create_summary(body: post.title)
-end
  
  # Create Comments
  100.times do
