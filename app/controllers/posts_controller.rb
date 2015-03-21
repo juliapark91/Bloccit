@@ -1,19 +1,19 @@
 class PostsController < ApplicationController
 
+before_action :set_topic
+
   def show
-    @post = Post.find(params[:id])
-    @topic = Topic.find(params[:topic_id])
+    @post = @topic.posts.find( params[:id] )
+
   end
 
   def new
-    @topic = Topic.find(params[:topic_id])
-    @post = Post.new
+    @post = @topic.posts.build
     authorize @post
   end
 
   def create
-    @topic = Topic.find(params[:topic_id])
-    @post = current_user.posts.build(params.require(:post).permit(:title, :body))
+    @post = @topic.posts.build(post_params.merge( user_id: current_user.id ) )
     if @post.save
       flash[:notice] = "Post was saved."
       redirect_to [@topic, @post]
@@ -24,17 +24,15 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @topic = Topic.find(params[:topic_id])
-    @post = Post.find(params[:id])
+    @post = current_user.posts.build(post_params)
     authorize @post
   end
 
   def update
-    @topic = Topic.find(params[:topic_id])
-    @post = Post.find(params[:id])
+    @post = current_user.posts.build(post_params)
     authorize @post
 
-    if @post.update_attributes(params.require(:post).permit(:title, :body))
+    if @post.update_attributes(post_params)
       flash[:notice] = "Post was updated."
       redirect_to [@topic, @post]
     else
@@ -42,4 +40,14 @@ class PostsController < ApplicationController
       render :edit
     end
   end
+end
+
+private
+
+def post_params
+  params.require(:post).permit(:title, :body)
+end
+
+def set_topic
+  @topic = Topic.find(params[:topic_id])
 end
