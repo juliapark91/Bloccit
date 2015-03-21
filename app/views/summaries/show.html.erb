@@ -1,5 +1,8 @@
-<h1>New Summary</h1>
+<p id="notice"><%= notice %></p>
 
-<%= render 'form' %>
+<p>
+  <strong>Body:</strong>
+  <%= @summary.body %>
+</p>
 
 <%= link_to 'Back', topic_post_path( @topic, @post ) %>
