@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 
   def create
     @topic = Topic.find(params[:topic_id])
-    @post = current_user.posts.build(params.require(:post).permit(:title, :body))
+    @post = current_user.posts.build(post_params)
     if @post.save
       flash[:notice] = "Post was saved."
       redirect_to [@topic, @post]
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     authorize @post
 
-    if @post.update_attributes(params.require(:post).permit(:title, :body))
+    if @post.update_attributes(post_params)
       flash[:notice] = "Post was updated."
       redirect_to [@topic, @post]
     else
@@ -43,3 +43,17 @@ class PostsController < ApplicationController
     end
   end
 end
+
+private
+
+def post_params
+  params.require(:post).permit(:title, :body)
+end
+
+def render_as_markdown
+  renderer = Redcarpet::Render::HTML.new
+  extensions = {fenced_code_blocks: true}
+  redcarpet = Redcarpet::Markdown.new(renderer, extensions)
+  (redcarpet.render markdown).html_safe
+end
+
