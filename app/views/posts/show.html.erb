@@ -10,3 +10,10 @@
     <% end %>
   </div>
 </div>
+
+<% if @post.summary.present? %>
+  <h2>Post Summary:</h2>
+  <p><%= @post.summary.body %></p>
+<% else %>
+  <%= link_to 'New Summary', new_topic_post_summary_path( @topic, @post ) %>
+<% end %>
