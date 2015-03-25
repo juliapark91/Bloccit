@@ -3,12 +3,12 @@ class PostsController < ApplicationController
 before_action :set_topic
 
   def show
-    @post = @topic.posts.find( params[:id] )
+    @post = Post.find(params[:id])
 
   end
 
   def new
-    @post = @topic.posts.build
+    @post = Post.new
     authorize @post
   end
 
