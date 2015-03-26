@@ -2,7 +2,9 @@
 
 <div class="row">
   <div class="col-md-8">
-    <%= render partial: 'comment', collection: @comments %>
+
+      <%= render partial: 'comments/comment', collection: @comments %>
+
     <small>
       <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
       submitted <%= time_ago_in_words(@post.created_at) %> ago by
