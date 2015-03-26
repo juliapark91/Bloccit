@@ -4,8 +4,8 @@ before_action :set_topic
 
   def show
     @post = Post.find(params[:id])
-    @comment = @post.comments
     authorize @post
+    @comments = @post.comments
   end
 
   def new
@@ -25,12 +25,12 @@ before_action :set_topic
   end
 
   def edit
-    @post = current_user.posts.build(post_params)
+    @post = Post.find(params[:id])
     authorize @post
   end
 
   def update
-    @post = current_user.posts.build(post_params)
+    @post = Post.find(params[:id])
     authorize @post
 
     if @post.update_attributes(post_params)

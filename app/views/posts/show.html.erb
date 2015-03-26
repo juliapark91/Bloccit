@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-md-8">
 
-      <%= render partial: 'comments/comment', collection: @comments %>
+      <%= render @comments %>
 
     <small>
       <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
@@ -16,5 +16,8 @@
     <% if policy(@post).edit? %>
       <%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
     <% end %>
+      <%= link_to "New Comment", new_topic_post_comment_path(@topic, @post), class: 'btn btn-success' %>
   </div>
 </div>
+
+
