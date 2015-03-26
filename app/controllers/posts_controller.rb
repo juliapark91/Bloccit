@@ -4,6 +4,7 @@ before_action :set_topic
 
   def show
     @post = @topic.posts.find( params[:id] )
+    @comment = @post.comments.find( params[:id])
 
   end
 
