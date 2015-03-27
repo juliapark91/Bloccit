@@ -16,7 +16,9 @@
     <% if policy(@post).edit? %>
       <%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
     <% end %>
+    <% if policy(@comments).create? %>
       <%= link_to "New Comment", new_topic_post_comment_path(@topic, @post), class: 'btn btn-success' %>
+    <% end %>
   </div>
 </div>
 

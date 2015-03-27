@@ -4,10 +4,12 @@ class CommentsController < ApplicationController
   def new
     @comment = @post.comments.build
     authorize @post
+    authorize @comment
   end
 
   def create
     @comment = @post.comments.build(comment_params.merge( user_id: current_user.id ))
+    authorize @comment
     if @comment.save
       flash[:notice] = "Comment was saved."
       redirect_to [@topic, @post]
