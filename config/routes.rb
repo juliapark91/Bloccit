@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   
   resources :posts, only: [] do #This is because we don't want to create any /posts/:id routes, just posts/:post_id/comments
-    resource :comments, only: [:create, :new, :destroy]
+    resources :comments, only: [:destroy, :create, :new]
   end
 
   get 'about' => 'welcome#about'
