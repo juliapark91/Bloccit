@@ -4,9 +4,7 @@ describe Post do
   describe "vote methods" do
 
     before do
-      user = User.create
-      topic = Topic.create
-      @post = Post.create(title: 'post title', body: 'Post bodies must be pretty long.')
+      @post = associated_post
       3.times { @post.votes.create(value: 1)}
       2.times { @post.votes.create(value: -1)}
     end
@@ -29,4 +27,23 @@ describe Post do
       end
     end
   end
+end
+
+def associated_post(options={})
+  post_options = {
+    title: 'Post title',
+    body: 'Post bodies must be pretty long.',
+    topic: Topic.create(name: 'Topic name'),
+    user: authenticated_user
+  }.merge(options)
+
+  Post.create(post_options)
+end
+
+def authenticated_user(options={})
+  user_options = {email: "email#{rand}@fake.com", password: 'password'}.merge(options)
+  user = User.new(user_options)
+  user.skip_confirmation! #skip_confirmation from devise
+  user.save #only returns true or false
+  user
 end

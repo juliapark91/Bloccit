@@ -16,6 +16,7 @@ before_action :set_topic
   def create
     @post = @topic.posts.build(post_params.merge( user_id: current_user.id ) )
     if @post.save
+      @post.create_vote
       flash[:notice] = "Post was saved."
       redirect_to [@topic, @post]
     else
