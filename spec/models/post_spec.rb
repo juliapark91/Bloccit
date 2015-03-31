@@ -27,6 +27,9 @@ describe Post do
       end
     end
   end
+
+  describe '#create_vote' do
+    it "generates an p"
 end
 
 def associated_post(options={})
