@@ -1,0 +1,16 @@
+
+<div class="row">
+  <div class="col-md-8">
+    <h1><%= @guest.firstname %></h1><h1><%= @guest.lastname %></h1>
+  </div>
+  <div class="col-md-4">
+      <%= link_to "Edit", edit_party_guest_path(@party, @guest), class: 'btn btn-success' %>
+
+      <%= link_to "Delete Guest", [@party, @guest], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this guest?' } %>
+    <div>
+      <h3><%#= pluralize(@guest.count, 'guests') %></h3>
+    </div>
+  </div>
+</div>
+
+

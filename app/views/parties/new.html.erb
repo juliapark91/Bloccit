@@ -1,0 +1,19 @@
+<h1>New Party</h1>
+
+<div class="row">
+  <div class="col-md-8">
+    <%= form_for @party do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control', placeholder: "Enter title name" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :public, class: 'checkbox' do %>
+          <%= f.check_box :public %> Public title
+        <% end %>
+      </div>
+      <%= f.submit "Save", class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<h1>Parties</h1>
+
+<div class="row">
+  <div class="col-md-8">
+    <% @parties.each do |party| %>
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to party.title, party %>
+          </h4>
+          <small>
+            <%= party.starttime %>
+            <%= party.endtime %>
+          </small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+
+      <%= link_to "New Party", new_party_path, class: 'btn btn-success' %>
+
+    <%= will_paginate @parties %>
+  </div>
+</div>

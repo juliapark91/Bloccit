@@ -1,20 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users
-    resources :users, only: [:update]
 
-  resources :topics do
-    resources :posts, except: [:index]
+  get 'guests/index'
+
+  get 'guests/new'
+
+  get 'guests/show'
+
+  get 'guests/edit'
+
+  resources :parties do
+    resources :guests
   end
 
-  resources :posts, only: [] do
-    resources :comments, only: [:create, :new, :destroy]
-        post '/up-vote' => 'votes#up_vote', as: :up_vote
-        post '/down-vote' => 'votes#down_vote', as: :down_vote
-    end
-
-
-
-  get 'about' => 'welcome#about'
+  get 'party' => 'party#show'
   
-  root to: 'welcome#index'
+  root to: 'party#index'
 end
