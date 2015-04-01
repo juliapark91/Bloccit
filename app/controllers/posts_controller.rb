@@ -5,6 +5,7 @@ before_action :set_topic
   def show
     @post = Post.find(params[:id])
     authorize @post
+    authorize @topic
     @comments = @post.comments
   end
 
