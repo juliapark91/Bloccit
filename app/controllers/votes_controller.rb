@@ -13,7 +13,7 @@ class VotesController < ApplicationController
     redirect_to :back
   end
 
-private
+  private
 
   def load_post_and_vote
     @post = Post.find(params[:post_id])
