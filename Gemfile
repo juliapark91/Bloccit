@@ -59,6 +59,9 @@ group :development, :test do
 
   #RSpec
   gem 'rspec-rails', '~> 3.0'
+
+  #Capybara
+  gem 'capybara'
 end
 
 gem 'pry-rails', :group => :development
