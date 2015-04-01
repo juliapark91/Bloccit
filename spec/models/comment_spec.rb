@@ -23,7 +23,7 @@ describe Comment do
       @comment.save
     end
 
-    it "does not senf emails to users who haven't" do
+    it "does not send emails to users who haven't" do
       expect( FavoriteMailer )
         .not_to receive(:new_comment)
 
