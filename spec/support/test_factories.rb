@@ -10,11 +10,14 @@ module TestFactories
   Post.create(post_options)
 end
 
-def authenticated_user(options={})
-  user_options = {email: "email#{rand}@fake.com", password: 'password'}.merge(options)
-  user = User.new(user_options)
-  user.skip_confirmation! #skip_confirmation from devise
-  user.save #only returns true or false
-  user
-end
+  def authenticated_user(options={})
+    user_options = {email: "email#{rand}@fake.com", password: 'password'}.merge(options)
+    user = User.new(user_options)
+    user.skip_confirmation! #skip_confirmation from devise
+    user.save #only returns true or false
+    user
+  end
+
+  def comment_without_email
+  end
 end
