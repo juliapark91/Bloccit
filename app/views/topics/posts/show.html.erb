@@ -5,7 +5,7 @@
 
       <h1><%= markdown_to_html @post.title %></h1>
 
-      <%= render @comments %>
+      <%= render partial: 'comments/comment', collection:@comments %>
 
     <small>
       <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
