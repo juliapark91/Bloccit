@@ -15,7 +15,6 @@ describe Comment do
     # We don't need to change anything for this condition;
     # The email_favorites attribute defaults to true
     context "with user's permission" do
-
       it "sends an email to users who have favorited the post" do
         @user.favorites.where(post: @post).after_create
 
@@ -38,10 +37,9 @@ describe Comment do
           .not_to receive(:new_comment)
 
         @comment.save
-      end
     end
     
-    it "does not senf emails to users who haven't" do
+    it "does not send emails to users who haven't" do
       expect( FavoriteMailer )
         .not_to receive(:new_comment)
 
@@ -49,3 +47,4 @@ describe Comment do
     end
   end
 end
+
