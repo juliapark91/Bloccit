@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe Vote do
+  
+  before do
+    @user = create(:user)
+    @post = create(:post, user: @user)
+  end
+
   describe "validations" do
     describe "value validation" do
       it "only allows -1 or 1 as values" do
@@ -17,10 +23,10 @@ describe Vote do
   end
 
   describe 'after_save' do
+
     it "calls 'Post#update_rank' after save" do
-      include TestFactories
-      vote = Vote.new(value: 1, post: post)
-      expect(post).to receive(:update_rank)
+      vote = Vote.new(value: 1, post: @post)
+      expect(@post).to receive(:update_rank)
       vote.save
     end
   end
