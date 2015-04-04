@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe User do
 
+  include FactoryGirl
+
   describe "#favorite(post)" do
 
     before do
@@ -45,6 +47,21 @@ describe User do
     it "stores a `comments_count` on user" do
       users = User.top_rated
       expect( users.first.comments_count ).to eq(2)
+    end
+  end
+
+  describe "user with post and comment" do
+
+    before do
+      @user = create(:user_with_post_and_comment)
+    end
+
+    it "returns one post on user_with_post_and_comment" do
+      expect( @user.posts.count ).to eq(1)
+    end
+
+    it "returns one comment on user_with_post_and_comment" do
+      expect( @user.comments.count ).to eq(1)
     end
   end
 end
