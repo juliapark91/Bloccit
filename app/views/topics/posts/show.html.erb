@@ -7,7 +7,7 @@
 
     <h2>Comments</h2>
       <div class='js-comments'>
-        <%= render partial: 'comments/comment', collection:@comments %>
+        <%= render partial: 'comments/comment', collection: @comments %>
       </div>
       <div class='new-comment'>
         <%= render 'comments/form' %>
@@ -38,7 +38,6 @@
 
       <%= render partial: 'favorites/favorite', locals: {post: @post} %>
 
-      <%= link_to "New Comment", new_post_comment_path(@post), class: 'btn btn-success' %>
   </div>
 </div>
 
