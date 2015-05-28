@@ -9,4 +9,12 @@ class Post < ActiveRecord::Base
   validates :body, length: { minimum: 20 }, presence: true
   validates :topic, presence: true
   validates :user, presence: true
+
+  after_create :track_post
+
+  private
+
+  def track_post
+    self.tracker.track(user_id, 'Created Post')
+  end
 end
