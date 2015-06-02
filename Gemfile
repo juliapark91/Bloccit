@@ -70,5 +70,5 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'will_paginate', '~> 3.0.5'
-gem 'mixpanel', '~> 2.1.0'
+gem 'mixpanel-ruby', '~> 2.1.0'
 
