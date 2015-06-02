@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+
+  include Mixpanel
+
   has_many :comments
   belongs_to :user
   belongs_to :topic
@@ -15,6 +18,7 @@ class Post < ActiveRecord::Base
   private
 
   def track_post
-    self.tracker.track(user_id, 'Created Post')
+    tracker ||= Mixpanel::Tracker.new( ENV['PROJECT_TOKEN'] )
+    tracker.track( user_id, 'Created Post' )
   end
 end

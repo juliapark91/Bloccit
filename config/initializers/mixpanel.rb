@@ -1,1 +1,0 @@
-tracker = Mixpanel::Tracker.new( ENV['PROJECT_TOKEN'] )
