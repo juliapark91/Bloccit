@@ -6,7 +6,7 @@ Find the app at [juliapark-bloccit](https://juliapark-bloccit.herokuapp.com)
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 2.2.2
 
 * System dependencies
 
