@@ -22,6 +22,7 @@ gem 'mini_magick'
 
 gem 'pundit',                   '~> 1.0.0'
 
+gem 'rack-cors',                '~> 0.4.0', :require => 'rack/cors'
 gem 'redcarpet'
 
 gem 'sass-rails',               '~> 5.0'
